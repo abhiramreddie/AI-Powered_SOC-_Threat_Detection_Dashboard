@@ -1,6 +1,11 @@
 import streamlit as st
 from detector import run_all_detections
 import requests
+import os
+from dotenv import load_dotenv
+
+# LOAD ENV VARIABLES
+load_dotenv()
 
 # CONFIGURATION
 st.set_page_config(page_title="SOC Threat Detection Dashboard", layout="wide")
@@ -34,7 +39,7 @@ st.sidebar.header("Control Panel")
 with open("sample_logs.txt", "r") as file:
     logs = [line.strip() for line in file.readlines()]
 
-#LOGS ANALYZER 
+# LOGS ANALYZER 
 if st.sidebar.button("📂 Run Logs Analyzer"):
 
     with st.spinner("Running AI + Rule-Based Detection..."):
@@ -58,7 +63,7 @@ def check_ip_abuse(ip):
 
     headers = {
         "Accept": "application/json",
-        "Key": "b81a057c389d1ddcab1877a65ecfa907aed062659354830b714e5cf2e188d8e38967fe4e2de4ed2a"
+        "Key": os.getenv("ABUSEIPDB_API_KEY")
     }
 
     params = {
@@ -121,7 +126,7 @@ if st.sidebar.button("Check URL Safety"):
                 vt_url = "https://www.virustotal.com/api/v3/urls"
 
                 headers = {
-                    "x-apikey": "55cb3b8bb3a31a38cc36fcbdd275fff898c60e1213d8aa290a62aeb926b528b5"
+                    "x-apikey": os.getenv("PHISHING_API_KEY")
                 }
 
                 # Step 1: Submit URL
