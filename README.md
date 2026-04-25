@@ -52,6 +52,14 @@ PHISHING_API_KEY=your_api_key_here
 ```
 
 ---
+## ⚙️ Setup Instructions
+
+1. Clone the repository  
+2. Install dependencies:
+   pip install -r requirements.txt  
+3. Create a `.env` file and add your API keys  
+4. Run the app:
+   streamlit run app.py  
 
 ## 💡 Why I built this
 
